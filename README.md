@@ -1,35 +1,25 @@
-## create rails application
+## Storyteller
 
-Given we have two models, Article and Story. Article has name, text and type (like blog post, facebook post or tweet).
-Story has name and contains one or more articles.
+This application is host in Heroku. If you need access to it via SSH, please contact me.
 
-There should be a single API enpoint that returns list of articles. Basing on query params list could be:
+# How it works
 
- - searched by article name or text
- - sorted on any field
- - grouped by any of field
- - grouped by story with totals:
-   - article count
-   - article type count
-   - last created article
+The application on allows certain filtering and grouping. For such actions, you will have to pass
+parameters to the URL. You can pass several filters, and one grouping as parameters to the root URL of these
+project. For instance, I would like to find an article by a keyword, sort it by content, and group them
+by stories:
 
+   https://radiant-dawn-90123.herokuapp.com/?keyword=cyclopean&sort=content&group=story
 
-## add UI
+*NOTE:* There's a slight change of column names in the Articles, and Stories models. Please refer to
+them in the code in the schema file.
 
-Display the data using React.JS and Mobx.
+The following are the params restricted words for each action
 
-UI should consist of:
-
-- table of articles with sort controls in column headers
-- select box with options to group by
-- search input field
-
-
-## add realtime
-
-Let's suppose there are two users are on the same page and if one of them will create/delete/update article, second user should see these changes in real time.
-
-
-## deploy it
-
-Application should be up and running on the server. Please provide SSH access to it.
+ - Search by article name or text (keyword=<title, or content>)
+ - Sort on any field (sort=<field>)
+ - Group by any field (group=<field>)
+ - Group by story with totals:
+   - article count (group_totals=article)
+   - article type count (group_totals=article_type)
+   - last created article (group_totals=last_created)
