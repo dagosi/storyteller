@@ -1,8 +1,10 @@
 class ArticlesController < ApplicationController
   def index
     article_management_service = ArticleManagementService.new(params.dup)
-    @articles = article_management_service.call
+    article_management_service.call
 
-    render json: @articles
+    @articles = article_management_service.articles
+    @story_articles = article_management_service.story_articles
+    @story_totals = article_management_service.story_totals
   end
 end

@@ -1,2 +1,26 @@
-<h1>Articles#index</h1>
-<p>Find me in app/views/articles/index.html.erb</p>
+<h1>Articles</h1>
+
+<% if @story_articles %>
+  <% @story_articles.each do |story, articles| %>
+    <fieldset>
+      <legend><%= story.name.titleize %></legend>
+
+      <% articles.each do |article| %>
+        <h3><%= article.name %></h3>
+        <p><%= article.content %></p>
+      <% end %>
+    </fieldset>
+
+    <br />
+    <br />
+  <% end %>
+<% elsif @story_totals %>
+  <% @story_totals.each do |story, total| %>
+    <h3><%= story.name %>: <%= total %></h3>
+  <% end %>
+<% else %>
+  <% @articles.each do |article| %>
+    <h3><%= article.name %></h3>
+    <p><%= article.content %></p>
+  <% end %>
+<% end %>
